@@ -7,20 +7,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.laptopshop.service.UserService;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.springframework.ui.Model;
 
-@RestController
+@Controller
 public class UserController {
     private UserService userService;
     
-    // DI: Dependency Injection:
+    //Dependency Injection
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
-
-    @GetMapping("/")
-    public String getHomePage() {
-        return userService.handHello();
+    @RequestMapping("/")
+    public String getHomePage(Model model) {
+        String test = this.userService.handHello();
+        model.addAttribute("eric", test);
+        model.addAttribute("daoanhtuan", "tuan");
+        return "hello";
     }
+    
 }
