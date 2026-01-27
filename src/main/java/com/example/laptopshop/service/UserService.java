@@ -1,10 +1,12 @@
 package com.example.laptopshop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import com.example.laptopshop.repository.UserRepository;
 import com.example.laptopshop.domain.User;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -29,5 +31,16 @@ public class UserService {
         User tuan = this.userRepository.save(user);
         System.out.println(tuan);
         return tuan;
+    }
+
+    //  orElseThrow: nếu không tìm thấy, ném ra ngoại lệ, có sẵn như RuntimeException
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+
+    public void deleteUserById(Long id) {
+        this.userRepository.deleteById(id);
     }
 }

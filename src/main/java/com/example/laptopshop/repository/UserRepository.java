@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
-    User save(User hoidanit);
+    User save(User tuan); 
     List<User> findByEmailAndAddress(String email, String address);
 }  

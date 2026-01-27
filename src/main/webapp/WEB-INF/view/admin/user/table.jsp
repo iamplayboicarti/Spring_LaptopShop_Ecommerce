@@ -34,8 +34,13 @@
                                 <td>
                                     <a href="/admin/user/view/${user.id}" class="btn btn-sm btn-success">View</a>
                                     <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-warning">Update</a>
-                                    <a href="/admin/user/delete/${user.id}" class="btn btn-sm btn-danger" onclick="return confirm('Xóa user này?')">Delete</a>
-                                </td>
+                                    <form action="/admin/user/delete/${user.id}" method="POST" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-danger" 
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa user này?')">
+                                        Delete
+                                    </button>
+                                </form>
+</td>                            
                             </tr>
                         </c:forEach>
                     </tbody>
