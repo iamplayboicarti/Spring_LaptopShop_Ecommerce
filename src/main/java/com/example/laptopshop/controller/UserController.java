@@ -96,7 +96,7 @@ public class UserController {
 
     // ========== ⭐ DELETE - Xóa User ==========
     @RequestMapping(value = "/admin/user/delete/{id}", method = RequestMethod.POST)
-    public String getDeleteUserPage(@PathVariable long id) {
+    public String postDeleteUserPage(@PathVariable long id) {
         this.userService.deleteUserById(id);
         return "redirect:/admin/user";
     }
