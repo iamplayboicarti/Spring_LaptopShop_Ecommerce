@@ -1,4 +1,4 @@
-package com.example.laptopshop.controller;
+package com.example.laptopshop.controller.admin;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class UserController {
     public String getUserPage(Model model) {
         List<User> users = this.userService.getALLUsers();
         model.addAttribute("users", users);
-        return "admin/user/table";
+        return "admin/user/show";
     }
 
     // ========== CREATE - Hiển thị form tạo User ==========
@@ -59,7 +59,7 @@ public class UserController {
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);
         model.addAttribute("id", id);
-        return "admin/user/view";
+        return "admin/user/detail";
     }
 
     // ==========  UPDATE - Hiển thị form cập nhật User ==========

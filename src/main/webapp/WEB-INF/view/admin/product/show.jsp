@@ -10,7 +10,6 @@
     <meta name="description" content="Dự án laptopshop" />
     <meta name="author" content="Dao Anh Tuan" />
     <title>Dashboard - Dao Anh Tuan</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -21,13 +20,76 @@
         <jsp:include page="../layout/sidebar.jsp" />    
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                    <div> product </div> 
-                </div>
+            <div class="container-fluid px-4">
+  <h1 class="mt-4">Manage Products</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+    <li class="breadcrumb-item active">Products</li>
+  </ol>
+
+  <div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span>Products table</span>
+      <a href="/admin/product/create" class="btn btn-primary btn-sm">Create Product</a>
+    </div>
+    <div class="card-body">
+      <!-- Bỏ phần bảng product hiện tại của bạn ở đây -->
+      <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Sold</th>
+              <th>Factory</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <c:forEach var="p" items="${products}">
+              <tr>
+                <td>${p.id}</td>
+                <td>
+                  <c:if test="${not empty p.image}">
+                    <img src="${p.image}" alt="${p.name}" style="height:40px; object-fit:cover;" />
+                  </c:if>
+                </td>
+                <td>${p.name}</td>
+                <td><fmt:formatNumber value="${p.price}" type="currency" /></td>
+                <td>${p.quantity}</td>
+                <td>${p.sold}</td>
+                <td>${p.factory}</td>
+                <td>
+                  <a href="/admin/product/view/${p.id}" class="btn btn-sm btn-success">View</a>
+                  <a href="/admin/product/update/${p.id}" class="btn btn-sm btn-warning">Edit</a>
+                  <form action="/admin/product/delete/${p.id}" method="post" style="display:inline;">
+                    <c:if test="${not empty _csrf}">
+                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    </c:if>
+                    <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm ${p.name}?');">
+                      Delete
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            </c:forEach>
+
+            <c:if test="${empty products}">
+              <tr>
+                <td colspan="8" class="text-center">Không có sản phẩm nào</td>
+              </tr>
+            </c:if>
+          </tbody>
+        </table>
+      </div>
+      <!-- Kết thúc bảng -->
+    </div>
+  </div>
+</div>
             </main>
             <jsp:include page="../layout/footer.jsp" />
         </div>
