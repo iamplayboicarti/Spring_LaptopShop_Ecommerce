@@ -4,11 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.*;
 import com.example.laptopshop.domain.User;
 import com.example.laptopshop.service.UserService;
 
@@ -30,8 +26,8 @@ public class UserController {
         return "hello";
     }
 
-    // ========== TABLE - Hiển thị danh sách Users ==========
-    @RequestMapping(value = "/admin/user")
+    // ========== - Hiển thị danh sách Users ==========
+    @GetMapping("/admin/user")
     public String getUserPage(Model model) {
         List<User> users = this.userService.getALLUsers();
         model.addAttribute("users", users);

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
 import com.example.laptopshop.repository.UserRepository;
 import com.example.laptopshop.domain.User;
 
@@ -26,6 +27,7 @@ public class UserService {
     public List<User> getAllUsersByEmail(String email, String address) {
         return (List<User>) this.userRepository.findByEmailAndAddress(email, address);
     }
+    
 
     public User handleSaveUser(User user) {
         User tuan = this.userRepository.save(user);
