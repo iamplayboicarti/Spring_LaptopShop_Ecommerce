@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Avatar:</label>
-                                        <input class="form-control" type="file" id="avatarFile" name="avatarFile" accept=".png, .jpg, .jpeg" />
+                                        <input class="form-control" type="file" id="avatarFile" name="avatarFile" multiple accept=".png, .jpg, .jpeg" />
                                         
                                         <div class="mt-3">
                                             <img id="avatarPreview" src="" alt="Avatar Preview" 

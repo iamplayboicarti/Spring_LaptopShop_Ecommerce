@@ -39,6 +39,7 @@
                                             <th>ID</th>
                                             <th>Email</th>
                                             <th>Full Name</th>
+                                            <th>Role</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -48,6 +49,7 @@
                                                 <td>${user.id}</td>
                                                 <td>${user.email}</td>
                                                 <td>${user.fullName}</td>
+                                                <td>${user.role.name}</td> 
                                                 <td>
                                                     <a href="/admin/user/view/${user.id}" class="btn btn-sm btn-success">View</a>
                                                     <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-warning">Update</a>
@@ -59,11 +61,16 @@
                                                             onclick="return confirm('Bạn chắc chắn muốn xóa user này?');">Delete</button>
                                                     </form>
                                                 </td>
+                                                <td>
+    <img style="width: 50px; height: 50px;" 
+         src="/images/avatar/${user.avatar}" 
+         alt="avatar"/>
+</td>
                                             </tr>
                                         </c:forEach>
                                         <c:if test="${empty users}">
                                             <tr>
-                                                <td colspan="4" class="text-center">Không có user nào</td>
+                                                <td colspan="6" class="text-center">Không có user nào</td>
                                             </tr>
                                         </c:if>
                                     </tbody>
