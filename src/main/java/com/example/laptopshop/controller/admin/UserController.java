@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +24,14 @@ public class UserController {
     private final UserService userService;
     private final ServletContext servletContext;
     private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder; 
+
     
-    public UserController(UserService userService, ServletContext servletContext, UploadService uploadService) {
+    public UserController(UserService userService, ServletContext servletContext, UploadService uploadService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.servletContext = servletContext;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
